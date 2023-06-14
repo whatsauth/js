@@ -59,8 +59,8 @@ return password;
 
 function generateUUID(wauthparam){
 let wuid;
-if (wauthparam.urlgetparams.uuid === undefined){
-    console.log("UUID : "+uuid);
+console.log(wauthparam.urlgetparams);
+if (wauthparam.urlgetparams.uuid === undefined){  
     uuid=crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+apphost;
     if (wauthparam.mobile){
     wuid = "m."+uuid;
@@ -68,7 +68,6 @@ if (wauthparam.urlgetparams.uuid === undefined){
     wuid = "d."+uuid;
     }
 }else{
-    console.log("masuk else ke mobile option : "+wauthparam.mobile);
     if (wauthparam.mobile){
     wuid=wauthparam.urlgetparams.uuid;
     }
