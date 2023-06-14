@@ -27,7 +27,7 @@ if (window["WebSocket"]) { //check browser support
     connect(id).then(function(server) {
     wsocket=server;
     }).catch(function(err) {
-    console.log("socket error");
+    console.log("socket error id : "+id);
     });
 } else {
     alert("Please Update Your browser to the latest version.");
