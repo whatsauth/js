@@ -59,7 +59,7 @@ return password;
 
 function generateUUID(wauthparam){
 let wuid;
-console.log(wauthparam.urlgetparams);
+console.log(wauthparam.urlgetparams.hasOwnProperty('uuid'));
 if (wauthparam.urlgetparams.uuid === undefined){  
     uuid=crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+apphost;
     if (wauthparam.mobile){
