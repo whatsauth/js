@@ -60,7 +60,7 @@ return password;
 function generateUUID(wauthparam){
 let wuid;
 if (window.location.search === ''){  
-    uuid=crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+apphost;
+    uuid=crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+wauthparam.apphost;
     if (wauthparam.mobile){
     wuid = "m."+uuid;
     }else{
