@@ -87,6 +87,7 @@ if (wauthparam.rto < wauthparam.maxqrwait){
 }
 
 function setCounterandQR(wauthparam){
+    console.log(wauthparam);
 document.getElementById(wauthparam.id_counter).innerHTML = wauthparam.countdown;
 if (wauthparam.countdown === 0) {
     closeWebSocket(wauthparam);
