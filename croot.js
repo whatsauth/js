@@ -87,17 +87,17 @@ if (wauthparam.rto < wauthparam.maxqrwait){
 }
 
 function setCounterandQR(wauthparam){
-    console.log(wauthparam);
-document.getElementById(wauthparam.id_counter).innerHTML = wauthparam.countdown;
-if (wauthparam.countdown === 0) {
-    closeWebSocket(wauthparam);
-    wauthparam.countdown=wauthparam.interval;
-    let uuid = generateUUID(wauthparam);
-    let waurl=atob(wauthparam.keyword)+uuid;
-    showQR(waurl,wauthparam);
-    openWebSocketSetId(uuid);
-}
-wauthparam.countdown--;
+    document.getElementById(wauthparam.id_counter).innerHTML = wauthparam.countdown;
+    if (wauthparam.countdown === 0) {
+        closeWebSocket(wauthparam);
+        wauthparam.countdown=wauthparam.interval;
+        let uuid = generateUUID(wauthparam);
+        console.log("UUID : "+uuid);
+        let waurl=atob(wauthparam.keyword)+uuid;
+        showQR(waurl,wauthparam);
+        openWebSocketSetId(uuid);
+    }
+    wauthparam.countdown--;
 }
 
 function makeQrCode(text,wauthparam){
