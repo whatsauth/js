@@ -60,6 +60,7 @@ return password;
 function generateUUID(wauthparam){
 let wuid;
 if (wauthparam.urlgetparams.uuid === undefined){
+    console.log("UUID : "+uuid);
     uuid=crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+apphost;
     if (wauthparam.mobile){
     wuid = "m."+uuid;
@@ -67,6 +68,7 @@ if (wauthparam.urlgetparams.uuid === undefined){
     wuid = "d."+uuid;
     }
 }else{
+    console.log("masuk else ke mobile option : "+wauthparam.mobile);
     if (wauthparam.mobile){
     wuid=wauthparam.urlgetparams.uuid;
     }
@@ -92,7 +94,6 @@ function setCounterandQR(wauthparam){
         closeWebSocket(wauthparam);
         wauthparam.countdown=wauthparam.interval;
         let uuid = generateUUID(wauthparam);
-        console.log("UUID : "+uuid);
         let waurl=atob(wauthparam.keyword)+uuid;
         showQR(waurl,wauthparam);
         openWebSocketSetId(uuid);
