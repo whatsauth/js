@@ -57,9 +57,9 @@ for (var i = 0; i <= passwordLength; i++) {
 return password;
 }
 
-function generateUUID(){
+function generateUUID(wauthparam){
 let wuid;
-if (urlgetparams.uuid == null){
+if (wauthparam.urlgetparams.uuid == null){
     uuid=crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+apphost;
     if (mobile){
     wuid = "m."+uuid;
@@ -68,7 +68,7 @@ if (urlgetparams.uuid == null){
     }
 }else{
     if (mobile){
-    wuid=urlgetparams.uuid;
+    wuid=wauthparam.urlgetparams.uuid;
     }
 }
 return wuid;
@@ -91,7 +91,7 @@ document.getElementById(wauthparam.id_counter).innerHTML = wauthparam.countdown;
 if (wauthparam.countdown === 0) {
     closeWebSocket(wauthparam);
     wauthparam.countdown=wauthparam.interval;
-    uuid = generateUUID();
+    uuid = generateUUID(wauthparam);
     waurl=atob(wauthparam.keyword)+uuid;
     showQR(waurl);
     openWebSocketSetId(uuid);
