@@ -74,25 +74,25 @@ if (urlgetparams.uuid == null){
 return wuid;
 }
 
-export function qrController() {
-setCounterandQR();
-rto++;
-if (rto < maxqrwait){
-    setTimeout('qrController()',1000);
+export function qrController(wauthparam) {
+setCounterandQR(wauthparam);
+wauthparam.rto++;
+if (wauthparam.rto < wauthparam.maxqrwait){
+    setTimeout('qrController(wauthparam)',1000);
 }else{
-    var svg = document.getElementById(id_qr);
-    svg.innerHTML=refreshbutton;
-    document.getElementById(id_counter).innerHTML = "Refresh Your Browser to get QR";
+    var svg = document.getElementById(wauthparam.id_qr);
+    svg.innerHTML=wauthparam.refreshbutton;
+    document.getElementById(wauthparam.id_counter).innerHTML = "Refresh Your Browser to get QR";
 }
 }
 
-function setCounterandQR(){
-document.getElementById(id_counter).innerHTML = countdown;
-if (countdown === 0) {
+function setCounterandQR(wauthparam){
+document.getElementById(wauthparam.id_counter).innerHTML = wauthparam.countdown;
+if (wauthparam.countdown === 0) {
     closeWebSocket();
-    countdown=interval;
+    wauthparam.countdown=wauthparam.interval;
     uuid = generateUUID();
-    waurl=atob(keyword)+uuid;
+    waurl=atob(wauthparam.keyword)+uuid;
     showQR(waurl);
     openWebSocketSetId(uuid);
 }
