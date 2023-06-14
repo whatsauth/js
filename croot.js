@@ -91,8 +91,8 @@ document.getElementById(wauthparam.id_counter).innerHTML = wauthparam.countdown;
 if (wauthparam.countdown === 0) {
     closeWebSocket(wauthparam);
     wauthparam.countdown=wauthparam.interval;
-    uuid = generateUUID(wauthparam);
-    waurl=atob(wauthparam.keyword)+uuid;
+    let uuid = generateUUID(wauthparam);
+    let waurl=atob(wauthparam.keyword)+uuid;
     showQR(waurl);
     openWebSocketSetId(uuid);
 }
