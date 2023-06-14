@@ -100,7 +100,7 @@ countdown--;
 }
 
 function makeQrCode(text){
-qr = QRCode.generateSVG(text, {
+let qr = QRCode.generateSVG(text, {
     ecclevel: "M",
     fillcolor: "#FFFFFF",
     textcolor: "#000000",
