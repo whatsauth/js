@@ -61,13 +61,13 @@ function generateUUID(wauthparam){
 let wuid;
 if (wauthparam.urlgetparams.uuid === undefined){
     uuid=crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+apphost;
-    if (mobile){
+    if (wauthparam.mobile){
     wuid = "m."+uuid;
     }else{
     wuid = "d."+uuid;
     }
 }else{
-    if (mobile){
+    if (wauthparam.mobile){
     wuid=wauthparam.urlgetparams.uuid;
     }
 }
