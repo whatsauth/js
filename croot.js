@@ -78,7 +78,7 @@ export function qrController(wauthparam) {
 setCounterandQR(wauthparam);
 wauthparam.rto++;
 if (wauthparam.rto < wauthparam.maxqrwait){
-    setTimeout('qrController(wauthparam)',1000);
+    setTimeout(qrController(wauthparam),1000);
 }else{
     var svg = document.getElementById(wauthparam.id_qr);
     svg.innerHTML=wauthparam.refreshbutton;
