@@ -99,7 +99,7 @@ if (wauthparam.countdown === 0) {
 countdown--;
 }
 
-function makeQrCode(text){
+function makeQrCode(text,wauthparam){
 let qr = QRCode.generateSVG(text, {
     ecclevel: "M",
     fillcolor: "#FFFFFF",
@@ -107,15 +107,15 @@ let qr = QRCode.generateSVG(text, {
     margin: 4,
     modulesize: 8
 });
-var svg = document.getElementById(id_qr);
+var svg = document.getElementById(wauthparam.id_qr);
     svg.replaceChild(qr,svg.firstElementChild);
 }
 
-function showQR(text){
+function showQR(text,wauthparam){
 if (typeof text === 'string' && text.length === 0) {
     document.getElementById('qrcode').style.display = 'none';
 } else {
-    makeQrCode(text);
+    makeQrCode(text,wauthparam);
 }
 }
 
