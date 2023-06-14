@@ -34,9 +34,9 @@ if (window["WebSocket"]) { //check browser support
 }
 }
 
-function closeWebSocket(){
-if (wsocket !== 0){
-    wsocket.close();
+function closeWebSocket(wauthparam){
+if (wauthparam.wsocket !== 0){
+    wauthparam.wsocket.close();
 }
 }
 
@@ -89,7 +89,7 @@ if (wauthparam.rto < wauthparam.maxqrwait){
 function setCounterandQR(wauthparam){
 document.getElementById(wauthparam.id_counter).innerHTML = wauthparam.countdown;
 if (wauthparam.countdown === 0) {
-    closeWebSocket();
+    closeWebSocket(wauthparam);
     wauthparam.countdown=wauthparam.interval;
     uuid = generateUUID();
     waurl=atob(wauthparam.keyword)+uuid;
