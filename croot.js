@@ -96,7 +96,7 @@ if (wauthparam.countdown === 0) {
     showQR(waurl,wauthparam);
     openWebSocketSetId(uuid);
 }
-countdown--;
+wauthparam.countdown--;
 }
 
 function makeQrCode(text,wauthparam){
