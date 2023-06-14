@@ -93,7 +93,7 @@ if (wauthparam.countdown === 0) {
     wauthparam.countdown=wauthparam.interval;
     let uuid = generateUUID(wauthparam);
     let waurl=atob(wauthparam.keyword)+uuid;
-    showQR(waurl);
+    showQR(waurl,wauthparam);
     openWebSocketSetId(uuid);
 }
 countdown--;
