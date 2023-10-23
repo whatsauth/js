@@ -1,3 +1,5 @@
+import { IsMobile,getParamsfromURL } from "./whatsauth.js"
+
 export let wauthparam={
     id_user:"user_name",
     id_pass:"user_pass",
@@ -16,21 +18,11 @@ export let wauthparam={
     rto :0,
     countdown:0,
     wsocket:0,
-    mobile:false,
-    urlgetparams:new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop) => searchParams.get(prop),
-      }),
+    mobile:IsMobile(),
+    urlgetparams:getParamsfromURL(),
     jsonres:null,
     uuid:null,
     waurl:null
 }
 
-if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-    wauthparam.mobile = true;
-  }else{
-    wauthparam.mobile = false;
-  }
 
-wauthparam.urlgetparams = new Proxy(new URLSearchParams(window.location.search), {
-  get: (searchParams, prop) => searchParams.get(prop),
-});
