@@ -84,9 +84,7 @@ export async function qrController(wauthparam) {
     for (let i = 1; i <= wauthparam.maxqrwait; i++) {
         await sleepNow(1000);
         setCounterandQR(wauthparam);
-        console.log(i);
     }
-    console.log("abis");
     var svg = document.getElementById(wauthparam.id_qr);
     svg.innerHTML=refreshbutton;
     document.getElementById(wauthparam.id_counter).innerHTML = "Refresh Your Browser to get QR";
@@ -111,9 +109,7 @@ function makeQrCode(text,wauthparam){
     qrc.make();
     let qr = qrc.createSvgTag({});
     var svg = document.getElementById(wauthparam.id_qr);
-    var z = document.createElement('div');
-    z.innerHTML = qr;
-    svg.replaceChild(z,svg.firstElementChild);
+    svg.innerHTML=qr;
 }
 
 function showQR(text,wauthparam){
