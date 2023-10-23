@@ -1,43 +1,40 @@
 import {qrController,deleteCookie} from "./croot.js";
 
 
-
-// /*config in html login page*/
-const id_user = 'user_name';
-const id_pass = 'user_pass';
-const id_form = 'loginform';
-const id_button = 'login';
-const using_click = true;
-// /*end of config in html login page*/
-
-const auth_ws = 'd3NzOi8vYXV0aC51bGJpLmFjLmlkL3dzL3doYXRzYXV0aC9xcg==';
-const keyword = 'aHR0cHM6Ly93YS5tZS82Mjg3NzUyMDAwMzAwP3RleHQ9d2g0dDVhdXRoMA==';
-
-const interval = 30;
-const maxqrwait = 90;
-const tokencookiename = "login";
-const tokencookiehourslifetime = 2;
-const id_qr = "whatsauthqr";
-const id_counter = "whatsauthcounter";
-
-const apphost = btoa(document.location.protocol + '//' +document.location.host+document.location.pathname);
-let jsonres;
-let rto =0;
-let countdown=0;
-let uuid;
-let wsocket=0;
-let mobile;
-let waurl;
+let wauthparam={
+    id_user:"user_name",
+    id_pass:"user_pass",
+    id_form:"loginform",
+    id_button:"login",
+    using_click : true,
+    auth_ws : "d3NzOi8vYXV0aC51bGJpLmFjLmlkL3dzL3doYXRzYXV0aC9xcg==",
+    keyword : 'aHR0cHM6Ly93YS5tZS82Mjg3NzUyMDAwMzAwP3RleHQ9d2g0dDVhdXRoMA==',
+    interval : 30,
+    maxqrwait : 90,
+    tokencookiehourslifetime : 2,
+    id_qr : "whatsauthqr",
+    id_counter : "whatsauthcounter",
+    tokencookiename : "login",
+    apphost : btoa(document.location.protocol + '//' +document.location.host+document.location.pathname),
+    rto :0,
+    countdown:0,
+    wsocket:0,
+    mobile:false,
+    urlgetparams:null,
+    jsonres:null,
+    uuid:null,
+    waurl:null
+}
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-    mobile = true;
+    wauthparam.mobile = true;
   }else{
-    mobile = false;
+    wauthparam.mobile = false;
   }
 
-const urlgetparams = new Proxy(new URLSearchParams(window.location.search), {
+wauthparam.urlgetparams = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
 
-deleteCookie(tokencookiename);
-qrController();
+deleteCookie(wauthparam.tokencookiename);
+qrController(wauthparam);

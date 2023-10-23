@@ -1,5 +1,8 @@
 import {refreshbutton} from "./template.js";
-import QRCode from 'https://cdn.skypack.dev/qrjs2/qrjs2.js';
+import QRCode from 'https://cdn.skypack.dev/qrjs2';
+
+
+
 
 function connect(id) {
     return new Promise(function(resolve, reject) {
