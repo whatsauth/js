@@ -1,4 +1,4 @@
-import {qrController,deleteCookie} from "./croot";
+import {qrController,deleteCookie} from "./croot.js";
 
 
 
