@@ -1,5 +1,8 @@
 import {refreshbutton} from "./template.js";
-import QRCode from 'https://cdn.jsdelivr.net/gh/englishextra/qrjs2@latest/js/qrjs2.min.js';
+import qrcode  from 'https://cdn.skypack.dev/qrcode-generator-es6';
+//import QRCode from 'https://cdn.skypack.dev/qrcode-svg';
+
+let i=1000;
 
 function connect(id) {
     return new Promise(function(resolve, reject) {
@@ -53,7 +56,7 @@ function generatePassword() {
     const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_.";
     var passwordLength = 17;
     var password = "";
-    for (const i = 0; i <= passwordLength; i++) {
+    for (let i = 0; i <= passwordLength; i++) {
             var randomNumber = Math.floor(Math.random() * chars.length);
             password += chars.substring(randomNumber, randomNumber +1);
         }
@@ -77,16 +80,18 @@ function generateUUID(wauthparam){
     return wuid;
 }
 
-export function qrController(wauthparam) {
+export function qrController(wauthparam,i) {
     setCounterandQR(wauthparam);
     wauthparam.rto++;
     if (wauthparam.rto < wauthparam.maxqrwait){
-        setTimeout(qrController(wauthparam),1000);
+        i+=1000;
+         setTimeout(qrController(wauthparam,i),i);
     }else{
+        console.log("abis");
         var svg = document.getElementById(wauthparam.id_qr);
-        svg.innerHTML=wauthparam.refreshbutton;
+        svg.innerHTML=refreshbutton;
         document.getElementById(wauthparam.id_counter).innerHTML = "Refresh Your Browser to get QR";
-}
+    }
 }
 
 function setCounterandQR(wauthparam){
@@ -103,15 +108,14 @@ function setCounterandQR(wauthparam){
 }
 
 function makeQrCode(text,wauthparam){
-    let qr = QRCode.generateSVG(text, {
-        ecclevel: "M",
-        fillcolor: "#FFFFFF",
-        textcolor: "#000000",
-        margin: 4,
-        modulesize: 8
-    });
+    const qrc = new qrcode(0, 'H');
+    qrc.addData(text);
+    qrc.make();
+    let qr = qrc.createSvgTag({});
     var svg = document.getElementById(wauthparam.id_qr);
-    svg.replaceChild(qr,svg.firstElementChild);
+    var z = document.createElement('div');
+    z.innerHTML = qr;
+    svg.replaceChild(z,svg.firstElementChild);
 }
 
 function showQR(text,wauthparam){
