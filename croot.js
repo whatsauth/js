@@ -1,4 +1,4 @@
-import {refreshbutton} from "./template";
+import {refreshbutton} from "./template.js";
 import QRCode from 'https://cdn.skypack.dev/qrjs2/qrjs2.js';
 
 function connect(id) {
