@@ -1,4 +1,4 @@
-export let refreshbutton=`
+export const refreshbutton=`
 <svg onclick="location.reload()" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 496.166 496.166" xml:space="preserve" fill="#000000">
 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
