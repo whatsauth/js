@@ -1,8 +1,5 @@
 import {refreshbutton} from "./template.js";
 import qrcode  from 'https://cdn.skypack.dev/qrcode-generator-es6';
-//import QRCode from 'https://cdn.skypack.dev/qrcode-svg';
-
-let i=1000;
 
 function connect(id) {
     return new Promise(function(resolve, reject) {
@@ -80,18 +77,19 @@ function generateUUID(wauthparam){
     return wuid;
 }
 
-export function qrController(wauthparam,i) {
-    setCounterandQR(wauthparam);
-    wauthparam.rto++;
-    if (wauthparam.rto < wauthparam.maxqrwait){
-        i+=1000;
-         setTimeout(qrController(wauthparam,i),i);
-    }else{
-        console.log("abis");
-        var svg = document.getElementById(wauthparam.id_qr);
-        svg.innerHTML=refreshbutton;
-        document.getElementById(wauthparam.id_counter).innerHTML = "Refresh Your Browser to get QR";
+
+const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
+export async function qrController(wauthparam) {
+    for (let i = 1; i <= wauthparam.maxqrwait; i++) {
+        await sleepNow(1000);
+        setCounterandQR(wauthparam);
+        console.log(i);
     }
+    console.log("abis");
+    var svg = document.getElementById(wauthparam.id_qr);
+    svg.innerHTML=refreshbutton;
+    document.getElementById(wauthparam.id_counter).innerHTML = "Refresh Your Browser to get QR";
 }
 
 function setCounterandQR(wauthparam){
