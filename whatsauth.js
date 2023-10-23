@@ -1,9 +1,9 @@
 import {refreshbutton} from "./template.js";
 import qrcode  from 'https://cdn.skypack.dev/qrcode-generator-es6';
 
-function connect(id) {
+function connectWS(wauthparam,id) {
     return new Promise(function(resolve, reject) {
-        let wsconn = new WebSocket(atob(auth_ws));
+        let wsconn = new WebSocket(atob(wauthparam.auth_ws));
         wsconn.onopen = () => {
           wsconn.send(id);
           console.log("connected and set id");
@@ -27,7 +27,7 @@ function connect(id) {
 
 function openWebSocketSetId(wauthparam,id){
     if (window["WebSocket"]) { //check browser support
-        connect(id).then((server) => {
+        connectWS(wauthparam,id).then((server) => {
             wauthparam.wsocket=server;
         }).catch((err) => {
         console.log("socket error id : "+id);
