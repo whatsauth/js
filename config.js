@@ -14,7 +14,7 @@ export let wauthparam={
     id_qr : "whatsauthqr",
     id_counter : "whatsauthcounter",
     tokencookiename : "login",
-    apphost : btoa(document.location.protocol + '//' +document.location.host+document.location.pathname),
+    apphost : btoa(document.location.href),
     rto :0,
     countdown:0,
     wsocket:0,
