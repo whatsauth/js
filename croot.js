@@ -1,3 +1,6 @@
+import {refreshbutton} from "./template";
+import QRCode from 'https://cdn.skypack.dev/qrjs2/qrjs2.js';
+
 function connect(id) {
     return new Promise(function(resolve, reject) {
         let wsconn = new WebSocket(atob(auth_ws));
