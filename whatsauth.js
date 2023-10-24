@@ -127,7 +127,7 @@ export function deleteCookie(cname) {
 
 function catcher(wauthparam,result){
     if (result.length > 2){
-        jsonres = JSON.parse(result);
+        let jsonres = JSON.parse(result);
         console.log("catcher runner");
         console.log(jsonres);
         setCookieWithExpireHour(wauthparam.tokencookiename,jsonres.login,wauthparam.tokencookiehourslifetime);
