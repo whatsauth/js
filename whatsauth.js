@@ -43,12 +43,6 @@ function closeWebSocket(wauthparam){
     }
 }
 
-function sendMessagetoWebSocket(msg){
-    if (wsocket.readyState === WebSocket.OPEN){
-        wsocket.send(msg);
-    }
-}
-
 function generatePassword() {
     const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_.";
     var passwordLength = 17;
