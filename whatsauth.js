@@ -125,28 +125,13 @@ export function deleteCookie(cname) {
     document.cookie = cname + "= ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
-function fillformLogin(resjson){
-    document.getElementById(id_user).value = resjson.user_name;
-    document.getElementById(id_pass).value = resjson.user_pass;
-}
-
-function submitLogin(){
-    document.getElementById(id_qr).innerHTML = "Success Login, Please Wait...";
-    if (using_click) {
-        document.getElementById(id_button).click();
-    }else{
-        document.getElementById(id_form).submit();
-    }
-}
-
 function catcher(wauthparam,result){
     if (result.length > 2){
         jsonres = JSON.parse(result);
         console.log("catcher runner");
         console.log(jsonres);
         setCookieWithExpireHour(wauthparam.tokencookiename,jsonres.login,wauthparam.tokencookiehourslifetime);
-        fillformLogin(jsonres);
-        submitLogin();
+        window.location.replace(wauthparam.redirect);
     }
 }
 
