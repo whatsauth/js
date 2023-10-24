@@ -19,7 +19,7 @@ function connectWS(wauthparam,id) {
         wsconn.onmessage = (evt) => {
           let messages = evt.data;
           console.log("incoming message");
-          catcher(messages);
+          catcher(wauthparam,messages);
         };
   
     });
@@ -145,12 +145,12 @@ function submitLogin(){
     }
 }
 
-function catcher(result){
+function catcher(wauthparam,result){
     if (result.length > 2){
         jsonres = JSON.parse(result);
         console.log("catcher runner");
         console.log(jsonres);
-        setCookieWithExpireHour(tokencookiename,jsonres.login,tokencookiehourslifetime);
+        setCookieWithExpireHour(wauthparam.tokencookiename,jsonres.login,wauthparam.tokencookiehourslifetime);
         fillformLogin(jsonres);
         submitLogin();
     }
