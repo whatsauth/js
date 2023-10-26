@@ -34,17 +34,6 @@ in your html
         </div>
     </div>
 
-    <form id="loginform" onsubmit="event.preventDefault();">
-        <input type="hidden" name="user_name" id="user_name" value="">
-        <input type="hidden" name="user_pass" id="user_pass" value="">
-        <input type="hidden" name="remember_me" value="y">
-        <button id="login" name="login" value="Login" class="button">Login</button>
-    </form>
-
-
-    <script>
-        document.getElementById("useracclog").innerHTML = navigator.userAgent;
-    </script>
 <script src="index.js" type="module"></script>
 </body>
 </html>
