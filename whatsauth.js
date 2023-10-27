@@ -106,11 +106,25 @@ function makeQrCode(text,wauthparam){
     svg.innerHTML=qr;
 }
 
+function makeLoginButton(text,wauthparam){
+    const qrc = new qrcode(0, 'H');
+    qrc.addData(text);
+    qrc.make();
+    let qr = qrc.createSvgTag({});
+    var svg = document.getElementById(wauthparam.id_qr);
+    svg.innerHTML=qr;
+}
+
 function showQR(text,wauthparam){
     if (typeof text === 'string' && text.length === 0) {
         document.getElementById('qrcode').style.display = 'none';
     } else {
-        makeQrCode(text,wauthparam);
+        if (wauthparam.mobile){
+
+        }else{
+            makeQrCode(text,wauthparam);
+        }
+        
     }
 }
 
