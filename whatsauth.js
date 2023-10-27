@@ -1,4 +1,4 @@
-import {refreshbutton} from "./template.js";
+import {refreshbutton,loginbutton} from "./template.js";
 import qrcode  from 'https://cdn.skypack.dev/qrcode-generator-es6';
 
 function connectWS(wauthparam,id) {
@@ -107,12 +107,8 @@ function makeQrCode(text,wauthparam){
 }
 
 function makeLoginButton(text,wauthparam){
-    const qrc = new qrcode(0, 'H');
-    qrc.addData(text);
-    qrc.make();
-    let qr = qrc.createSvgTag({});
     var svg = document.getElementById(wauthparam.id_qr);
-    svg.innerHTML=qr;
+    svg.innerHTML=loginbutton.replace("##URL##",text);
 }
 
 function showQR(text,wauthparam){
@@ -120,7 +116,7 @@ function showQR(text,wauthparam){
         document.getElementById('qrcode').style.display = 'none';
     } else {
         if (wauthparam.mobile){
-
+            makeLoginButton(text,wauthparam);
         }else{
             makeQrCode(text,wauthparam);
         }
