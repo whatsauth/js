@@ -132,17 +132,15 @@ function showQR(text,wauthparam){
     }
 }
 
-function setCookieWithExpireHour(cname, cvalue, exhour) {
+function setCookieWithExpireHour(domain,cname, cvalue, exhour) {
     const d = new Date();
     d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
     let expires = "expires="+d.toUTCString();
-    let maindomain = (window.location.host).substring((window.location.host).indexOf(".") + 1);
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";domain=."+maindomain+";path=/";
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";domain="+domain+";path=/";
 }
 
-export function deleteCookie(cname) {
-    let maindomain = (window.location.host).substring((window.location.host).indexOf(".") + 1);
-    document.cookie = cname + "= ; expires=Thu, 01 Jan 1970 00:00:00 UTC;domain=."+maindomain+";path=/;";
+export function deleteCookie(domain,cname) {
+    document.cookie = cname + "= ; expires=Thu, 01 Jan 1970 00:00:00 UTC;domain="+domain+";path=/;";
 }
 
 function catcher(wauthparam,result){
