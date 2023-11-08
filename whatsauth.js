@@ -65,7 +65,7 @@ function generateObjectId(){
 function generateUUID(wauthparam){
     let wuid;
     if (window.location.search === ''){  
-        let uuid=generateObjectId()+"."+wauthparam.apphost;
+        let uuid=generateObjectId()+"."+crypto.randomUUID()+"."+wauthparam.apphost;
         if (wauthparam.mobile){
             wuid = "m."+uuid;
         }else{
