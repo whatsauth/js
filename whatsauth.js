@@ -136,11 +136,13 @@ function setCookieWithExpireHour(cname, cvalue, exhour) {
     const d = new Date();
     d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
     let expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    let maindomain = (window.location.host).substring((window.location.host).indexOf(".") + 1);
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";domain=."+maindomain+";path=/";
 }
 
 export function deleteCookie(cname) {
-    document.cookie = cname + "= ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    let maindomain = (window.location.host).substring((window.location.host).indexOf(".") + 1);
+    document.cookie = cname + "= ; expires=Thu, 01 Jan 1970 00:00:00 UTC;domain=."+maindomain+";path=/;";
 }
 
 function catcher(wauthparam,result){
