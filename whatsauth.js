@@ -54,10 +54,18 @@ function generatePassword() {
     return password;
 }
 
+function generateObjectId(){
+    var timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+    var randomnum = 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
+        return (Math.random() * 16 | 0).toString(16);
+    }).toLowerCase();
+    return timestamp+randomnum
+}
+
 function generateUUID(wauthparam){
     let wuid;
     if (window.location.search === ''){  
-        let uuid=crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+wauthparam.apphost;
+        let uuid=generateObjectId()+"."+wauthparam.apphost;
         if (wauthparam.mobile){
             wuid = "m."+uuid;
         }else{
