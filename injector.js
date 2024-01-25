@@ -35,7 +35,7 @@ const catcher = (wauthparam, result) => {
  * @param {String} id_button - The id of the button to be clicked.
  * @param {String} id_form - The id of the form to be submitted.
  */
-function submitLogin(using_click, id_button, id_form){
+const submitLogin =(using_click, id_button, id_form) => {
     if (using_click) {
         document.getElementById(id_button).click();
     }else{
@@ -48,7 +48,7 @@ function submitLogin(using_click, id_button, id_form){
  * @param {String} id_user - The id of the username input field in the form.
  * @param {String} id_pass - The id of the password input field in the form.
  */
-function fillformLogin(resjson, id_user, id_pass) {
+const fillformLogin = (resjson, id_user, id_pass) => {
     document.getElementById(id_user).value = resjson.user_name;
     document.getElementById(id_pass).value = resjson.user_pass;
 }
@@ -158,14 +158,27 @@ const generateUUID = async (wauthparam) => {
 }
 
 
-const main = async () => {
-    const uid = await generateUUID(autoinjector);
+/**
+ * @param {Object} config - The configuration object for the WebSocket connection and form manipulation.
+ * @param {String} config.auth_ws - The WebSocket connection string, base64 encoded.
+ * @param {String} config.domaincookie - The domain for the cookie.
+ * @param {Boolean} config.using_click - Determines whether to click the button or submit the form.
+ * @param {String} config.id_form_user - The id of the username input field in the form.
+ * @param {String} config.id_form_password - The id of the password input field in the form.
+ * @param {String} config.id_form - The id of the form to be submitted.
+ * @param {String} config.id_button - The id of the button to be clicked.
+ * @param {Number} config.interval - The interval for the WebSocket connection.
+ * @param {Number} config.tokencookiehourslifetime - The lifetime of the cookie in hours.
+ * @param {String} config.tokencookiename - The name of the cookie.
+ * @param {String} config.apphost - The host of the application, base64 encoded.
+ * @param {Boolean} config.mobile - Determines whether the user is on a mobile device.
+ * @param {Object} config.urlgetparams - The parameters from the URL.
+ */
+export const Entrypoint = async (config) => {
+    const uid = await generateUUID(config);
     if (uid === ""){
         return
     }
 
-    openWebSocketSetId(autoinjector, uid);
+    openWebSocketSetId(config, uid);
 }
-
-
-main();
