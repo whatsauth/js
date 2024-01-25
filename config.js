@@ -22,4 +22,18 @@ export let wauthparam={
     waurl:null
 }
 
-
+export let autoinjector = {
+    auth_ws : "d3M6Ly8xMjcuMC4wLjE6Nzk3OS9hcGkvdjIvd3Mvc2lw",
+    domaincookie : window.location.host,
+    using_click: true,
+    id_form_user : 'username',
+    id_form_password : 'password',
+    id_form : 'loginform',
+    id_button : 'login',
+    interval : 30,
+    tokencookiehourslifetime : 2,
+    tokencookiename : "login",
+    apphost : btoa(document.location.href),
+    mobile:IsMobile(),
+    urlgetparams:getParamsfromURL(),
+}

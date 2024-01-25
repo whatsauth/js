@@ -1,6 +1,4 @@
 import {getCookie, setCookieWithExpireHour} from "https://jscroot.github.io/cookie/croot.js";
-import {IsMobile, getParamsfromURL} from "https://cdn.jsdelivr.net/gh/whatsauth/js@v0.2.2/whatsauth.js";
-
 
 /**
  *
@@ -54,24 +52,6 @@ function fillformLogin(resjson, id_user, id_pass) {
     document.getElementById(id_user).value = resjson.user_name;
     document.getElementById(id_pass).value = resjson.user_pass;
 }
-
-
-export let autoinjector = {
-    auth_ws : "d3M6Ly8xMjcuMC4wLjE6Nzk3OS9hcGkvdjIvd3Mvc2lw",
-    domaincookie : window.location.host,
-    using_click: true,
-    id_form_user : 'username',
-    id_form_password : 'password',
-    id_form : 'loginform',
-    id_button : 'login',
-    interval : 30,
-    tokencookiehourslifetime : 2,
-    tokencookiename : "login",
-    apphost : btoa(document.location.href),
-    mobile:IsMobile(),
-    urlgetparams:getParamsfromURL(),
-}
-
 
 /**
  * @param {Object} wauthparam - The configuration object for the WebSocket connection and form manipulation.
