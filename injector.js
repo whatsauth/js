@@ -82,7 +82,7 @@ const connectWS = (wauthparam, id) => {
             console.log("socket error rejected");
             reject(err);
         };
-        wsconn.onclose = (evt) => {
+        wsconn.onclose = (_) => {
             console.log("connection closed");
         };
         wsconn.onmessage = (evt) => {
@@ -116,7 +116,7 @@ const openWebSocketSetId = (wauthparam, id) => {
         connectWS(wauthparam, id).then((server) => {
             wauthparam.wsocket = server;
         }).catch((err) => {
-            console.log("socket error id : " + id);
+            console.log("socket error id : " + id + "with err" + err);
         });
     } else {
         alert("Please Update Your browser to the latest version.");
