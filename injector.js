@@ -25,8 +25,8 @@ const catcher = (wauthparam, result) => {
         console.log("catcher runner");
         console.log(jsonres);
         setCookieWithExpireHour(wauthparam.tokencookiename,jsonres.login,wauthparam.tokencookiehourslifetime);
-        fillformLogin(jsonres, autoinjector.id_form_user, autoinjector.id_form_password);
-        submitLogin(autoinjector.using_click, autoinjector.id_button, autoinjector.id_form);
+        fillformLogin(jsonres, wauthparam.id_form_user, wauthparam.id_form_password);
+        submitLogin(wauthparam.using_click, wauthparam.id_button, wauthparam.id_form);
     }
 }
 
