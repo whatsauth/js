@@ -37,3 +37,9 @@ export let autoinjector = {
     mobile:IsMobile(),
     urlgetparams:getParamsfromURL(),
 }
+
+export const SwalChecker = () => {
+    if (typeof Swal == "undefined"){
+        alert("maaaf kakak, jangan lupa Swalnya dimasukkan ke html............")
+    }
+}
