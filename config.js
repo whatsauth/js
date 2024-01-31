@@ -1,5 +1,10 @@
 import { IsMobile,getParamsfromURL } from "./whatsauth.js"
 
+export const DefaultFailer = (_) => {
+    alert("maaaf kakak, jangan lupa Swalnya dimasukkan ke html............")
+}
+
+
 export let wauthparam={
     redirect : "./auth",
     auth_ws : "d3NzOi8vYXV0aC51bGJpLmFjLmlkL3dzL3doYXRzYXV0aC9xcg==",
@@ -37,10 +42,6 @@ export let autoinjector = {
     mobile:IsMobile(),
     urlgetparams:getParamsfromURL(),
     failer: DefaultFailer,
-}
-
-export const DefaultFailer = (_) => {
-    alert("maaaf kakak, jangan lupa Swalnya dimasukkan ke html............")
 }
 
 export const SwalChecker = () => {
