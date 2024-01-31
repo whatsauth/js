@@ -17,15 +17,17 @@ import {getCookie, setCookieWithExpireHourSubDomain } from "https://jscroot.gith
  * @param {Boolean} wauthparam.mobile - Determines whether the user is on a mobile device.
  * @param {Object} wauthparam.urlgetparams - The parameters from the URL.
  * @param {String}  result - json response from server
- *
+ * @param {Function} wauthparam.failer - function to be called when failed
  */
 const catcher = (wauthparam, result) => {
-    if (result.length > 2){
-        let jsonres = JSON.parse(result);
+    const jsonres = JSON.parse(result);
+
+    if (jsonres.user_name != null && jsonres.user_pass != null) {
         setCookieWithExpireHourSubDomain(wauthparam.tokencookiename,jsonres.login, wauthparam.domaincookie,wauthparam.tokencookiehourslifetime);
         fillformLogin(jsonres, wauthparam.id_form_user, wauthparam.id_form_password);
         submitLogin(wauthparam.using_click, wauthparam.id_button, wauthparam.id_form);
     }
+    wauthparam.failer();
 }
 
 /**
