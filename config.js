@@ -36,6 +36,11 @@ export let autoinjector = {
     apphost : btoa(document.location.href),
     mobile:IsMobile(),
     urlgetparams:getParamsfromURL(),
+    failer: DefaultFailer,
+}
+
+export const DefaultFailer = (_) => {
+    alert("maaaf kakak, jangan lupa Swalnya dimasukkan ke html............")
 }
 
 export const SwalChecker = () => {
