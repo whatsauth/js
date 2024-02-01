@@ -1,7 +1,21 @@
 import { IsMobile,getParamsfromURL } from "./whatsauth.js"
+import { FillformLogin, SubmitLogin } from "./helper";
 
 export const DefaultFailer = (_) => {
     alert("maaaf kakak, jangan lupa Swalnya dimasukkan ke html............")
+}
+
+/**
+ *
+ * @param {Object} json
+ * @constructor
+ */
+
+export const DefaultSuccesser = (json) => {
+   console.log(json)
+    FillformLogin(jsonres, autoinjector.id_form_user, autoinjector.id_form_password);
+    SubmitLogin(autoinjector.using_click, autoinjector.id_button, autoinjector.id_form);
+
 }
 
 
@@ -42,6 +56,7 @@ export let autoinjector = {
     mobile:IsMobile(),
     urlgetparams:getParamsfromURL(),
     failer: DefaultFailer,
+    successer: DefaultSuccesser,
 }
 
 export const SwalChecker = () => {
