@@ -1,5 +1,5 @@
 import { IsMobile,getParamsfromURL } from "./whatsauth.js"
-import { FillformLogin, SubmitLogin } from "./helper";
+import { FillformLogin, SubmitLogin } from "./helper.js";
 
 export const DefaultFailer = (_) => {
     alert("maaaf kakak, jangan lupa Swalnya dimasukkan ke html............")
