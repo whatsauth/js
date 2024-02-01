@@ -1,4 +1,32 @@
-import {getCookie, setCookieWithExpireHourSubDomain } from "https://jscroot.github.io/cookie/croot.js";
+const getCookie = (cname) => {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+/**
+ * Sets a cookie with a specified expiration time and domain.
+ *
+ * @param {String} cname - The name of the cookie.
+ * @param {String} cvalue - The value of the cookie.
+ * @param {String} domain - The domain where the cookie is valid.
+ * @param {Number} exhour - The number of hours until the cookie expires.
+ */
+export const setCookieWithExpireHourSubDomain = (cname, cvalue, domain, exhour) => {
+    const d = new Date();
+    d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
+    const expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";domain="+ domain +";path=/";
+}
 
 /**
  *
@@ -22,12 +50,13 @@ import {getCookie, setCookieWithExpireHourSubDomain } from "https://jscroot.gith
 const catcher = (wauthparam, result) => {
     const jsonres = JSON.parse(result);
 
-    if (jsonres.user_name != null && jsonres.user_pass != null) {
-        setCookieWithExpireHourSubDomain(wauthparam.tokencookiename,jsonres.login, wauthparam.domaincookie,wauthparam.tokencookiehourslifetime);
-        fillformLogin(jsonres, wauthparam.id_form_user, wauthparam.id_form_password);
-        submitLogin(wauthparam.using_click, wauthparam.id_button, wauthparam.id_form);
+    if (jsonres.user_name == null && jsonres.user_pass == null) {
+        wauthparam.failer();
     }
-    wauthparam.failer();
+
+    setCookieWithExpireHourSubDomain(wauthparam.tokencookiename, jsonres.login, wauthparam.domaincookie, wauthparam.tokencookiehourslifetime);
+    fillformLogin(jsonres, wauthparam.id_form_user, wauthparam.id_form_password);
+    submitLogin(wauthparam.using_click, wauthparam.id_button, wauthparam.id_form);
 }
 
 /**
@@ -35,10 +64,10 @@ const catcher = (wauthparam, result) => {
  * @param {String} id_button - The id of the button to be clicked.
  * @param {String} id_form - The id of the form to be submitted.
  */
-const submitLogin =(using_click, id_button, id_form) => {
+const submitLogin = (using_click, id_button, id_form) => {
     if (using_click) {
         document.getElementById(id_button).click();
-    }else{
+    } else {
         document.getElementById(id_form).submit();
     }
 }
@@ -150,7 +179,7 @@ const generateUUID = async (wauthparam) => {
         return wuid;
     }
 
-    if (wauthparam.mobile){
+    if (wauthparam.mobile) {
         wuid = wauthparam.urlgetparams.uuid;
     }
 
@@ -176,7 +205,7 @@ const generateUUID = async (wauthparam) => {
  */
 export const Entrypoint = async (config) => {
     const uid = await generateUUID(config);
-    if (uid === ""){
+    if (uid === "") {
         return
     }
 
