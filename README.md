@@ -134,6 +134,10 @@ if (getCookie("login")===""){
     getWithHeader("https://mrt.ulbi.ac.id/notif/ux/getdatauser","login",getCookie("login"),getUserFunction);
 }
 ```
+Pada laman HTML jangan lupa untuk menambahkan js sweet alert:
+```html
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+```
 
 ## Release
 
